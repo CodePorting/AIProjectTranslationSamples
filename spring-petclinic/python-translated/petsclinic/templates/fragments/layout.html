@@ -1,0 +1,62 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="{% static 'resources/images/favicon.png' %}">
+  <title>PetClinic :: a Spring Framework demonstration</title>
+  <link href="{% static 'webjars/font-awesome/4.7.0/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'resources/css/petclinic.css' %}" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}"><span></span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}" title="home">
+            <span class="fa fa-home"></span> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'find_owners' %}" title="find owners">
+            <span class="fa fa-search"></span> Find owners
+          </a>
+        </li>
+		<li class="nav-item">
+          <a class="nav-link" href="{% url 'vets' %}" title="find owners">
+            <span class="fa fa-search"></span> Veterinars
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'error' %}" title="trigger an error">
+            <span class="fa fa-exclamation-triangle"></span> Error
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="container xd-container">
+    {% block content %}{% endblock %}
+    <br />
+    <div class="row">
+      <div class="col-12 text-center">
+        <img src="{% static 'resources/images/spring-logo.svg' %}" alt="VMware Tanzu Logo" class="logo">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'webjars/bootstrap/5.3.3/dist/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends "fragments/layout.html" %}
+<html>
+<head>
+    <title>{% if visit.new %}New{% endif %} Visit</title>
+</head>
+<body>
+{% block content %}
+<h2>
+    {% if visit.new %}New {% endif %} Visit
+</h2>
+
+<b>Pet</b>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Type</th>
+            <th>Owner</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>{{ pet.name }}</td>
+        <td>{{ pet.birthDate|date:"Y-m-d" }}</td>
+        <td>{{ pet.type }}</td>
+        <td>{{ owner.firstName }} {{ owner.lastName }}</td>
+    </tr>
+</table>
+
+<form method="post" class="form-horizontal">
+    {% csrf_token %}
+    <div class="form-group has-feedback">
+        {% include 'fragments/inputField.html' with title='Date' field_name='date' field_type='date' %}
+        {% include 'fragments/inputField.html' with title='Description' field_name='description' field_type='text' %}
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="petId" value="{{ pet.id }}" />
+            <button class="btn btn-primary" type="submit">Add Visit</button>
+        </div>
+    </div>
+</form>
+
+<br />
+<b>Previous Visits</b>
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Description</th>
+    </tr>
+    {% if not visit.new %}
+        {% for visit in pet.visits %}
+            <tr>
+                <td>{{ visit.date|date:"Y-m-d" }}</td>
+                <td>{{ visit.description }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock content %}
+</body>
+</html>

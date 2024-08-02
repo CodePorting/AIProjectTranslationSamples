@@ -1,0 +1,82 @@
+{% extends "fragments/layout.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinarians</title>
+    <!-- Подключите необходимые стили и скрипты здесь -->
+</head>
+<body>
+{% block content %}
+<h2>Veterinarians</h2>
+
+<table id="vets" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Specialties</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for vet in list_vets %}
+    <tr>
+        <td>{{ vet.first_name }} {{ vet.last_name }}</td>
+        <td>
+            {% for specialty in vet.specialties %}
+                <span>{{ specialty.name }} </span>
+            {% empty %}
+                <span>none</span>
+            {% endfor %}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% comment %}
+{% if total_pages > 1 %}
+<div>
+    <span>Pages:</span>
+    <span>[</span>
+    {% for i in range(1, total_pages + 1) %}
+        {% if current_page != i %}
+            <a href="{% url 'vets' %}?page={{ i }}">{{ i }}</a>
+        {% else %}
+            <span>{{ i }}</span>
+        {% endif %}
+    {% endfor %}
+    <span>]</span>
+
+    <span>
+        {% if current_page > 1 %}
+            <a href="{% url 'vets' %}?page=1" title="First" class="fa fa-fast-backward"></a>
+        {% else %}
+            <span title="First" class="fa fa-fast-backward"></span>
+        {% endif %}
+    </span>
+    <span>
+        {% if current_page > 1 %}
+            <a href="{% url 'vets' %}?page={{ current_page|add:-1 }}" title="Previous" class="fa fa-step-backward"></a>
+        {% else %}
+            <span title="Previous" class="fa fa-step-backward"></span>
+        {% endif %}
+    </span>
+    <span>
+        {% if current_page < total_pages %}
+            <a href="{% url 'vets' %}?page={{ current_page|add:1 }}" title="Next" class="fa fa-step-forward"></a>
+        {% else %}
+            <span title="Next" class="fa fa-step-forward"></span>
+        {% endif %}
+    </span>
+    <span>
+        {% if current_page < total_pages %}
+            <a href="{% url 'vets' %}?page={{ total_pages }}" title="Last" class="fa fa-fast-forward"></a>
+        {% else %}
+            <span title="Last" class="fa fa-fast-forward"></span>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+{% endcomment %}
+{% endblock content %}
+</body>
+</html>

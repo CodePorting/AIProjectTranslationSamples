@@ -1,0 +1,17 @@
+{% extends "fragments/layout.html" %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    {% load static %}
+</head>
+<body>
+{% block content %}
+    <img src="{% static 'resources/images/pets.png' %}" alt="Pets"/>
+    <h2>Something happened...</h2>
+    <p>{{ message }}</p>
+{% endblock content %}
+</body>
+</html>
