@@ -6,7 +6,7 @@ The project is originated from Spring-based demo application https://github.com/
 - Django 5.0.7
 
 # Run
-Move to the django project's root, start development server and navigate to http://localhost:8000. No need initiate db schema, a sample db is included.
+Move to the django project's root, start development server and navigate to http://localhost:8000. No need to initiate db schema, a sample db is included.
 ```
 cd spring-petclinic/python-translated
 python manage.py runserver
