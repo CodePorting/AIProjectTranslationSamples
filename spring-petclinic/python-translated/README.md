@@ -1,3 +1,13 @@
-The **Spring-PetClinic** project is a simple Java web project.  
-The project has been translated from java to Python Django.  
-To run the python django project, install python and djungo, execute the command `python manage.py runserver` from the root of the project.  
+# PetsClinic Project 
+The project is originated from Spring-based demo application https://github.com/spring-projects/spring-petclinic and translated to Django-based demo application.
+
+# Requirements
+- Python 3.12
+- Django 5.0.7
+
+# Run
+Move to the django project's root, start development server and navigate to http://localhost:8000. No need initiate db schema, a sample db is included.
+```
+cd spring-petclinic/python-translated
+python manage.py runserver
+````
